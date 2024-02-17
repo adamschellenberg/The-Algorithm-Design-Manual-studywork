@@ -73,17 +73,48 @@
             },
         ]
     
-        let sortedByEndDateOfferedMovieJobs = offeredMovieJobs;
+        // expected answer for given above input
+        let answer = [
+            "movie3",
+            "movie6",
+            "movie9",
+            "movie10"
+        ];
+
         
-        sortedByEndDateOfferedMovieJobs.sort((a,b) => {
+        let acceptedJobs = [];
+        let result = "";
+
+        scheduleJobsOptimally();
+
+        if(testSchedulingFunction(answer, acceptedJobs)) {
+            result = "Test passed";
+        } else {
+            result = "Test failed"
+        }
+
+        document.getElementById("result").innerHTML = "The accepted jobs are: " + acceptedJobs + "<br />" + result;
+        
+
+
+        // Test function
+        function testSchedulingFunction(answer, acceptedJobs) {
+            return Array.isArray(answer) &&
+            Array.isArray(acceptedJobs) &&
+            answer.length === acceptedJobs.length &&
+            answer.every((val, index) => val === acceptedJobs[index]);
+        }
+
+        // Job Scheduling algorithm
+        function scheduleJobsOptimally() {
+            let sortedByEndDateOfferedMovieJobs = offeredMovieJobs;
+        
+            sortedByEndDateOfferedMovieJobs.sort((a,b) => {
             let da = new Date(a.endDate),
                 db = new Date(b.endDate);
-            return da - db;
-        });
+                return da - db;
+            });
 
-        let acceptedJobs = [];
-
-        const scheduleJobsOptimally = () => {
             while (sortedByEndDateOfferedMovieJobs.length != 0) {
                 let movie = sortedByEndDateOfferedMovieJobs[0];
 
@@ -101,11 +132,7 @@
 
             }
         }
-
-        scheduleJobsOptimally();
-        
-        document.getElementById("result").innerHTML = "The optimal jobs to accept are: " + acceptedJobs;
-        
+                
     </script>
 </body>
 </html>
