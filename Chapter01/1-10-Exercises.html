@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 1 Exercises</title>
+    <style>
+        body {
+            margin: 5%;
+            background-color: #212121;
+            color: #F5F5F5;
+        }
+        div {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <h2>Finding Counterexamples</h2>
+<!-- START OF FINDING COUNTEREXAMPLES -->
+<div>
+    <div id="exercise1-1">
+        <p>
+            1-1: Show that <em>a + b</em> can be less than min(<em>a,b</em>).
+            <br />
+            <strong>ANSWER: </strong>-1 + -1 = -2
+        </p>
+    </div>
+
+    <div id="exercise1-2">
+        <p>
+            1-2: Show that <em>a X b</em> can be less than min(<em>a,b</em>).
+            <br />
+            <strong>ANSWER: </strong>-2 X 3 = -6
+        </p>
+    </div>
+
+    <div id="exercise1-3">
+        <p>
+            1-3: Design/draw a road network with two points <em>a</em> and <em>b</em> such that the fastest route between <em>a</em> and <em>b</em> is not the shortest route.
+            <br />
+            <img src="answer1-3.png" id="answer1-3" style="height: 200px;"/>
+        </p>
+    </div>
+
+    <div id="exercise1-4">
+        <p>
+            1-4: Design/draw a road network with two point <em>a</em> and <em>b</em> such that the shortest route between <em>a</em> and <em>b</em> is not the route with the fewest turns.
+            <br />
+            <img src="answer1-4.png" id="answer1-4" style="height: 240px;" />
+        </p>
+    </div>
+
+    <div id="exercise1-5">
+        <p>
+            1-5: The <em>knapsack problem</em> is as follows: given a set of integers <em>S = {s<sub>1</sub>, s<sub>2</sub>, ..., s<sub>n</sub>}</em>,
+            and a target number <em>T</em>, find a subset of <em>S</em> that adds up exactly to <em>T</em>. For example, there exists
+            a subset within <em>S = {1, 2, 5, 9, 10}</em> that adds up to <em>T = 22</em> but not <em>T = 23</em>.
+            <br />
+            Find counterexamples of each of the following algorithms for the knapsack problem. That is, give an <em>S</em> and <em>T</em>
+            where the algorithm does not find a solution that leaves the knapsack completely full, even though a full-knapsack solution exists.
+            <br />
+            <ol type="a">
+                <li>
+                    Put the elements of <em>S</em> in the knapsack in left to right order if they fit, that is, the first-fit algorithm.
+                    <br />
+                    <strong>ANSWER: </strong>S = [5, 2, 1, 7, 8, 3] and T = 18. First-fit algorithm results in knapsackArray = [5, 2, 1, 7], stopping after 7 due to 8 not fitting.
+                    knapsackSum = 15, not 18, therefore it is not a perfect fit. A perfect fit does exist, adding in 3 to the knapsack.
+                </li>
+                <br />
+                <li>
+                    Put the elements of <em>S</em> in the knapsack from smallest to largest, that is, the best-fit algorithm.
+                    <br />
+                    <strong>ANSWER: </strong>S = [2, 4, 6, 8, 10, 12] and T = 22. Best-fit algorithm results in knapsackArray = [2, 4, 6, 8], stopping after 8 due to 10 not fitting.
+                    knapsackSum = 20, not 22, therefore it is not a perfect fit. A perfect fit does exist, using 10 and 12. 
+                </li>
+                <br />
+                <li>
+                    Put the elements of <em>S</em> in the knapsack from largest to smallest.
+                    <br />
+                    <strong>ANSWER: </strong>S = [14, 10, 8, 5, 1] and T = 15. This algorithm results in knapsackArray = [14], stopped after 14 due to 10 not fitting.
+                    knapsackSum = 14, not 15, therefore it is not a perfect fit. A perfect fit does exist, adding in 1 to the knapsack.
+                </li>
+            </ol>
+        </p>
+    </div>
+
+    <div id="exercise1-6">
+        <p>
+            1-6: The <em>set cover problem</em> is as follows: given a set <em>S</em> of subsets <em>S<sub>1</sub>, ..., S<sub>m</sub></em> of
+            the universal set <em>U = {1, ..., n}</em>, find the smallest subset of subsets <em>T &SubsetEqual; S</em> such that <em>&cup;<sub>t<sub>i</sub>&isin;T</sub><span style="font-size: 1.5em;">t</span><sub>i</sub> = U</em>.
+            For example, consider the subsets <em>S<sub>1</sub> = {1, 3, 5}, S<sub>2</sub> = {2, 4}, S<sub>3</sub> = {1, 4}, and S<sub>4</sub> = {2, 5}</em>.
+            The set cover of <em>{1, ..., 5}</em> would then be <em>S<sub>1</sub></em> and <em>S<sub>2</sub></em>.
+            <br />
+            Find a counterexample for the following algorithm. Select the largest subset for the cover, and then delete all its elements from the
+            universal set. Repeat by adding the subset containing the largest number of uncovered elements until all are covered.
+            <br />
+            <strong>ANSWER: </strong>U = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}. S<sub>1</sub> = {1, 2, 3, 4, 5, 6, 7, 8}, S<sub>2</sub> = {9},
+            S<sub>3</sub> = {10}, S<sub>4</sub> = {3, 4, 5, 6, 7, 8, 9}, S<sub>5</sub> = {1, 2, 10}. The largest subset would be S<sub>1</sub>. This would leave U = {9, 10}.
+            S<sub>4</sub> and S<sub>5</sub> do not contain the remaining elements of U, however S<sub>2</sub> and S<sub>3</sub> do, resulting in T = {S<sub>1</sub>, S<sub>2</sub>, S<sub>3</sub>}.
+            However, this can be completed with T = {S<sub>4</sub>, S<sub>5</sub>}
+        </p>
+    </div>
+
+    <div id="exercise1-7">
+        <p>
+            1-7: The <em>maximum clique</em> problem in a graph <em>G = (V, E)</em> asks for the largest subset <em>C</em> of vertices <em>V</em> such that 
+            there is an edge in <em>E</em> between every pair of vertices in <em>C</em>. Find a counterexample for the following algorithm: Sort the vertices 
+            of <em>G</em> from highest to lowest degree. Considering the vertices in order of degree, for each vertex add it to the clique if it is a neighbor
+            of all vertices currently in the clique. Repeat until all vertices have been considered.
+            <br />
+            <img src="answer1-7.png" id="answer1-7" style="height: 200px;"/>
+        </p>
+    </div>
+</div>
+<!-- END OF FINDING COUNTEREXAMPLES -->
+
+    <h2>Proofs of Correctness</h2>
+<!-- START OF PROOFS OF CORRECTNESS -->
+<div>
+    <div id="exercise1-8">
+        <p>
+            1-8: Prove the correctness of the following recursive algorithm to multiply two natural numbers, for all integer
+            constants <em>c &GreaterEqual; 2</em>.
+            <ul style="list-style-type:none;">
+                <li>Multiply(<em>y, z</em>)</li>
+                <li>
+                    <ul style="list-style-type:none;">
+                        <li><em>if z = 0 then</em> return (0) <em>else</em></li>
+                        <li>return(Multiply(<em>cy, &lfloor;z/c&rfloor;</em>) + <em>y</em> * (<em>z</em> mod <em>c</em>))</li>
+                    </ul>
+                </li>
+            </ul>
+            <strong>ANSWER: </strong>For a demonstration (proof) of correctness, c = 2, y = 4, z = 5. The known solution of 4 * 5 is 20, and the algorithm
+            correctly results in the same answer
+            <br />
+            Because z != 0, we will move to the next line, replacing all variables with the input integers:
+            <br />
+            ((2 * 4), &lfloor;5/2&rfloor;) + 4 * (5 % 2)
+            <br />
+            (8 * 2) + 4 * (1)
+            <br />
+            16 + 4
+            <br />
+            20
+
+        </p>
+    </div>
+
+    <div id="exercises1-9">
+        <p>
+            1-9: Prove the correctness of the following algorithm for evaluating a polynomial
+            <em>a<sub>n</sub>x<sup>n</sup> + a<sub>n-1</sub>x<sup>n-1</sup> + ... + a<sub>1</sub>x + a<sub>0</sub></em>.
+            <ul style="list-style-type: none;">
+                <li>Horner(<em>a, x</em>)</li>
+                <ul style="list-style-type: none;">
+                    <li><em>p = a<sub>n</sub></em></li>
+                    <li>for <em>i</em> from <em>n</em> - 1 to 0</li>
+                    <ul style="list-style-type: none;">
+                        <li><em>p = p * x + a<sub>i</sub></em></li>
+                    </ul>
+                    <li>return <em>p</em></li>
+                </ul>
+            </ul>
+        </p>
+    </div>
+</div>
+<!-- END OF PROOFS OF CORRECTNESS -->
+
+    <h2>Induction</h2>
+<!-- START OF INDUCTION -->
+<!-- END OF INDUCTION -->
+
+    <h2>Estimation</h2>
+<!-- START OF ESTIMATION -->
+<div>
+    <div id="exercise1-21">
+        <p>
+            1-21: Do all the books you own total at least one million pages? How many total pages are stored in your school library?
+            <br />
+            <strong>ANSWER: </strong> I know I have roughly 100 books and 200 volumes of manga because, well... I like data.
+                Each volume of manga averages roughly 180 pages. That comes out to 36,000 pages. My books tend to average 400 pages. That's 40,000 more pages.
+                In total, that is 76,000 pages. So no, I do not have 1 million pages of books. That's a lot.
+                <br />
+                Now for my library. I'm going to break it down into two sections, due to bookshelf sizes. In the young children's section, there are 15 bookshelves that are 2 shelves high, and roughly 1.5x the width of my bookshelf.
+                That's 30 shelves of books, at 1.5x the capacity each of my shelves. Because of how much smaller the children's books are, there are likely 75 books per shelf.
+                30 shelves multipled by 75 is 2,250 young children's books. Having young children, and therefore having a pretty good amount of experience with these books,
+                I estimate each book to have 20 pages each on average. That's 45,000 pages of young children's books. Moving on to the rest of the library.
+                There are about 12 sections of bookshelves that are 6 shelves high. Nine sections have 8 bookshelves of the same with as the children's shelves.
+                Three sections are "ends" and only have 4 bookshelves. That is a total of 96 bookshelves, or 576 shelves. Subtract three bookshelves that are typically empty, 558 shelves.
+                Considering one of my shelves holds an estimated 6,840 pages of a similar mixture of paperback and hardcover books as my library, and the library shelves are 1.5x wider,
+                each shelf holds an estimated 10,260 pages per shelf. Multiply that by the 558 shelves, 5,725,080 pages. Add the 45,000 pages of young childrens books for a total
+                of 5,770,080 pages. That is about 76x more pages than my personal library. Because I own one full bookshelf, typically two books deep, as well as an extra two large bins of books
+                that don't fit, plus books that stay in my kids' rooms and the closet, I feel confident that 76x at the library is a decent estimation.
+        </p>
+    </div>
+
+    <div id="exercise1-22">
+        <p>
+            1-22: How many words are there in this textbook?
+            <br />
+            <strong>ANSWER: </strong> On average, a printed page is 350 words. There are 800 (790-something, but I'm rounding up because math) pages in this book. 350 x 800 is 280,000 words.
+        </p>
+    </div>
+
+    <div id="exercise1-23">
+        <p>
+            1-23: How many hours are in one million seconds? How many days? Answer these questions by doing all arithmetic in your head.
+            <br />
+            <strong>ANSWER: </strong> One hour is 60 minutes. 60 minutes is 3,600 seconds. Multiply that by 200 to get 720,000.
+            Tack on an extra 50x, which would be 180,000 to get to 900,000. From there, add another 20x to get 972,000.
+            If you add another 10x, you end up slightly over the 1mil mark at 1,008,000. So, another 8x instead would get you to 1,000,800, just baaaarely over.
+            In total, we multiplied by 278. So, there should be roughly 278 hours (rounded up a little) in 1 million seconds.
+            <br />
+            Now, 278 hours into days. There are 24 hours in a day. 240 hours in 10 days. That's 38 hours remaining, which is 1 extra day. So, 1 million seconds should be
+            11 days and 14 hours.
+            <br />
+            I checked Google because it was killing me not knowing how close I was: Google says 277.78 hours in 1 million seconds, and 11.57 days. Heck yeah!            
+        </p>
+    </div>
+
+    <div id="exercise1-24">
+        <p>
+            1-24: Estimate how many cities and towns there are in the United States.
+            <br />
+            <strong>ANSWER: </strong>Oof. I'm not gonna do great on this one. Last time I saw a list of cities/towns in just Arizona, I was shocked at how many.
+            I'm gonna say like, 50 cities/towns per state. 50 times 50 is 2,500.
+            <br />
+            Google says: 19,495 cities, towns, and villages. Man, I was way off. Just Arizona has 90. Almost double what I thought. And, once again, I'm shocked.
+            Maybe this time I'll remember.
+        </p>
+    </div>
+
+    <div id="exercise1-25">
+        <p>
+            1-25: Estimate how many cubic miles of water flow out of the mouth of the Mississippi River each day. Do not look up any supplemental facts.
+            Describe all the assumptions you made in arriving at your answer.
+            <br />
+            <strong>ANSWER: </strong>Pass. Off the top of my head, I'm not even sure where to begin with this one. I don't know what goes into calculating "cubic miles of water flow" in any sense, or how much a cubic mile is, or literally anything about the Mississippi River.
+            I'd rather admit I have no idea and look up the method so I can learn it.
+            <br />
+            That being said, I looked up amount of cubic feet in a cubic mile. And holy poop. A cubic mile is stinkin' huge. It's 5,280 x 5,280 x 5,280 cubic feet in a cubic mile.
+            Mississippi River has a flow rate of 600,000 cubic feet per second. Multiply that by 86,400 (amount of seconds in a day) and you get
+            51,840,000,000. A cubic mile is 147,197,952,000 cubic feet. Nearly triple. So there's "only" about 1/3 of a cubic mile of water flow out of the mouth of the Mississippi River
+            each day. "Only".
+        </p>
+    </div>
+
+    <div id="exercise1-26">
+        <p>
+            1-26: How many Starbucks or McDonald's locations are there in your country?
+            <br/>
+            <strong>ANSWER: </strong>I'm gonna say like, 800 McDonalds. That sounds about right. No real evidence as to why. It just seems like a lot.
+            <br />
+            Google says (drumroll please): 13,528. Holy cow. I was way off. JUST California has 1.224. 
+        </p>
+    </div>
+
+    <div id="exercise1-27">
+        <p>
+            1-27: How long would it take to empty a bathtub with a drinking straw?
+            <br />
+            <strong>ANSWER: </strong> Let's assume an average of 20 gallons of water in the tub when my kids take a bath, and a drinking straw holding like, 13 milliliters.
+            20 gallons is 75,708 milliliters. So, 75,708 / 13 = 5,824 (rounded up because filling up the straw partially would still count as another fill). Now, how long would that take?
+            Let's say we built a siphon that emptied a straw's worth of water every second (slightly faster than a human could, but much more sanitary. I'm not putting my mouth in
+            used bathwater). That's 5,824 seconds. Or, barely over 97 minutes. Not bad.
+        </p>
+    </div>
+
+    <div id="exercise1-28">
+        <p>
+            1-28: Is disk drive access time normally measure in milliseconds (thousandths of a second) or microseconds (millionths of a second)?
+            Does your RAM memory access a word in more or less than a microsecond? How many instructions can your CPU execute in one year if the machine
+            is left running all the time?
+            <br />
+            <strong>ANSWER: </strong>Disk drive access is measured in milliseconds. RAM is much faster, working in nanoseconds, so less than a microsecond.
+            A CPU is, uhhh, pretty fast. The Cortex-M7 (the CPU in the Panic Playdate) has a clock speed of 168MHz. In other words, 168 million cycles per second.
+            So, 168 * 10<sup>6</sup>. Now, multiply that by (60 seconds in a minute * 60 minutes in an hour * 24 hours in a day * 365 days in a year), you end up with
+            168 * 10<sup>6</sup> * 31,536,000. Or, 5.303168 * 10<sup>15</sup> instructions per year. And that's for just a tiny yellow console with a crank!
+        </p>
+    </div>
+
+    <div id="exercise1-29">
+        <p>
+            1-29: A sorting algorithm takes 1 second to sort 1,000 items on your machine. How long will it take to sort 10,000 items...
+            <ul style="list-style-type: lower-alpha;">
+                <li>
+                    if you believe that the algorithm takes time proportional to <em>n<sup>2</sup></em>, and
+                    <br />
+                    <strong>ANSWER: </strong>From what I understand, it would take 100 seconds, thought I would like to study Big O notation and time
+                    complexity further, as I don't fully understand it
+                </li>
+                <br />
+                <li>
+                    if you believe that the algorithm takes time roughly proportional to <em>n</em> log <em>n</em>
+                    <br />
+                    <strong>ANSWER: </strong>Researching it, I learned the following way to calculate the time:
+                    <br />
+                    T<sub>10000</sub> = (10000 log 10000 / 1000 log 1000) * T<sub>1000</sub>
+                    <br />
+                    log 10000 = 4 and log 1000 = 3, so T<sub>10000</sub> = (10000 * 4 / 1000 * 3) * T<sub>1000</sub>
+                    <br />
+                    T<sub>10000</sub> = 40/3 * T<sub>1000</sub>
+                    <br />
+                    T<sub>1000</sub> is already stated to = 1, so T<sub>10000</sub> = 40/3
+                    <br />
+                    Or, ~13.33 seconds
+                </li>
+                <br />
+                Applying this to (a), you would use the formula T<sub>10000</sub> = (10000/100)<sup>2</sup> * T<sub>1000</sub>
+                <br />
+                This would simplify down to T<sub>10000</sub> = 10<sup>2</sup> * 1 = 100
+            </ul>
+        </p>
+    </div>
+</div>
+<!-- END OF ESTIMATION -->
+
+    <h2>Implementation Projects</h2>
+<!-- START OF IMPLEMENTATION PROJECTS -->
+<div>
+    <div id="exercise1-30">
+        <p>
+            1-30: Implement the two TSP heuristics of Section 1.1 (page 5). Which of them gives better solutions in practice? Can you devise a heuristic that works
+            better than both of them?
+            <br />
+            <strong>ANSWER: </strong>WILL ADD LINK HERE
+        </p>
+    </div>
+
+    <div id="exercise1-31">
+        <p>
+            1-31: Describe how to test whether a given set of tickets establishes sufficient coverage in the Lotto problem of Section 1.8 (page 22).
+            Write a program to find good ticket sets.
+            <br />
+            <strong>ANSWER: </strong>WILL ADD LINK HERE
+        </p>
+    </div>
+</div>
+<!-- END OF IMPLEMENTATION PROJECTS -->
+
+</body>
+</html>
