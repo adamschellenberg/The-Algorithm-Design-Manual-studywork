@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 1-11-Gcd</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script>
+
+        function euclidGcdRecursive(a, b) {
+            if (a == 0) {
+                answer = b;
+            } else if (b == 0) {
+                answer = a;
+            } else {
+                let newA = b;
+                let newB = a%b;
+                euclidGcdRecursive(newA, newB);
+            }
+            return answer;
+        }
+
+        let answer;
+        let randomMin = 0;
+        let randomMax = 100;
+        let randomA = Math.floor(Math.random() * (randomMax - randomMin + 1)) + randomMin;
+        let randomB = Math.floor(Math.random() * (randomMax - randomMin + 1)) + randomMin;
+
+        let result = `Input: ${randomA}, ${randomB} <br /> Output: ${euclidGcdRecursive(randomA, randomB)}`;
+        document.getElementById("root").innerHTML = result;
+
+
+    </script>
+</body>
+</html>

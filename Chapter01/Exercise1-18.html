@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 1-18</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script>
+        
+        function proveDivisibleBy3(n) {
+            let result = false;
+            let test = ((n**3) + 2 * n) % 3;
+            if(test == 0) {
+                result = true;
+            }
+            return [test, result];
+        }
+
+        let randomMin = 0;
+        let randomMax = 100;
+        let randomInt = Math.floor(Math.random() * (randomMax - randomMin + 1)) + randomMin;
+
+        let result = `Input: ${randomInt} <br /> Output: ${proveDivisibleBy3(randomInt)}`;
+        document.getElementById("root").innerHTML = result;
+
+    </script>
+</body>
+</html>

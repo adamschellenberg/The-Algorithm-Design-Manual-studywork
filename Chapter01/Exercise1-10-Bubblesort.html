@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 1-10: Bubblesort</title>
+</head>
+<body>
+    <div id="root">
+    </div>
+
+    <script>
+
+        function bubbleSort(testArray) {
+            let sortedTestArray = testArray;
+
+            // O(n^2) because it's a loop within a loop
+            for(let i = sortedTestArray.length; i > 0; i--) {
+                for (let j = 0; j < (sortedTestArray.length - 1); j++) {
+                    if (sortedTestArray[j] > sortedTestArray[j + 1]) {
+                        let newJValue = sortedTestArray[j];
+                        let newJPlusOneValue = sortedTestArray[j+1];
+                        sortedTestArray[j] = newJPlusOneValue;
+                        sortedTestArray[j+1] = newJValue;
+                    }
+                }
+            }
+            return sortedTestArray;
+        }
+
+        const randomIntArrayInRange = (min, max, n = 1) =>
+            Array.from(
+                {length: n},
+                () => Math.floor(Math.random() * (max - min + 1)) + min
+            );
+
+        let testArray = randomIntArrayInRange(1, 200, 30);
+
+        let result = `Unsorted Array: ${testArray} <br /> Sorted Array: ${bubbleSort(testArray)}`;
+        document.getElementById("root").innerHTML = result;
+
+    </script>
+    
+</body>
+</html>
